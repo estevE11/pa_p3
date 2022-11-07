@@ -37,14 +37,14 @@ public class ArbreB {
 
 	/* PUBLIC METHODS */
 	public boolean isEmpty() {
-		//COMPLETE
+		return false; //COMPLETE
 	}
 	public void rewind() {
 		//COMPLETE
 	}
 	/* True if the current node is an answer (a leaf) */
 	public boolean atAnswer() {
-		//COMPLETE
+		return false; //COMPLETE
 	}
 	/* move current to yes-descendant of itself */
 	public void moveToYes() {
@@ -56,7 +56,7 @@ public class ArbreB {
 	}
 	/* get the contents of the current node */
 	public String getContents() {
-		//COMPLETE
+		return ""; //COMPLETE
 	}
 	 /* Substituir la informació del node actual
 	 * per la pregunta donada pel jugador. Previament crear el node que serà el
@@ -91,10 +91,12 @@ public class ArbreB {
 	public int quantsAnimals() {
 		/* Following the guidelines indicated in the statement of practice */
 		/* COMPLETE */
+		return -1;
 	}
 	public int alsada() {
 		/* COMPLETE */
 		// Imprescindible invocar a un mètode la classe NodeA
+		return -1;
 	}
 	public void visualitzarPreguntes() {
 		/* COMPLETE */
