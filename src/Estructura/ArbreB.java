@@ -33,33 +33,40 @@ public class ArbreB {
 	/* CONSTRUCTORS */
 	public ArbreB(ArbreB a1, ArbreB a2, String pregunta) {
 		//Constructor 1. Crea un arbre amb una pregunta i dos respostes
+		super();
+
+		NodeA first = new NodeA(pregunta, a1, a2);
+		this.root[0] = first;
+		this.root[1] = first;
 	}
 	public ArbreB() {
 		//Constructor 2. Crea un arbre buit
-	}	
+		this.root = new NodeA[2];
+	}
 	public ArbreB(String filename) throws Exception{
 		//Constructor 3. Crea l'arbre amb el contingut donat en un fitxer
 		//El paràmetre indica el nom del fitxer
+
 	}
 
 	/* PUBLIC METHODS */
 	public boolean isEmpty() {
-		return false; //COMPLETE
+		return this.root[0] == null && this.root[1] == null;
 	}
 	public void rewind() {
 		//COMPLETE
 	}
 	/* True if the current node is an answer (a leaf) */
 	public boolean atAnswer() {
-		return false; //COMPLETE
+		return this.root[1].no == null && this.root[1].yes == null; //COMPLETE
 	}
 	/* move current to yes-descendant of itself */
 	public void moveToYes() {
-		//COMPLETE
+		this.root[1] = this.root[1].yes.root[0];
 	}
 	/* move current to yes-descendant of itself */
 	public void moveToNo() {
-		//COMPLETE
+		this.root[1] = this.root[1].no.root[0];
 	}
 	/* get the contents of the current node */
 	public String getContents() {
@@ -70,7 +77,10 @@ public class ArbreB {
 	 * seu fill dret, resposta no encertada, amb la informació del node actual.
 	 */
 	public void improve(String question, String answer) {
-		//COMPLETE
+		ArbreB arbre_yes = new ArbreB(null, null, answer);
+		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
+		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
+
 	}
 	private void preorderWrite(BufferedWriter buw) throws Exception {
 		//Imprescindible que la implementació sigui recursiva
