@@ -92,11 +92,15 @@ public class ArbreB {
 		//Imprescindible implementació recursiva
 	}
 	public void visualitzarAnimals() {
-		/* Following the guidelines indicated in the statement of practice */
+		/* La implementació s’ha de fer, obligatòriament, invocant a un
+			mètode de la classe NodeA. És irrellevant l’ordre de
+			visualització*/
+
 		/* COMPLETE */
 	}
 	public int quantsAnimals() {
-		/* Following the guidelines indicated in the statement of practice */
+		/* La implementació s’ha de fer, obligatòriament, invocant a un
+			mètode de la classe NodeA */
 		/* COMPLETE */
 		return -1;
 	}
@@ -107,7 +111,8 @@ public class ArbreB {
 	}
 	public void visualitzarPreguntes() {
 		/* COMPLETE */
-		// Visualitza a pantalla les preguntes
-		// Imprescindible invocar a un màtode la classe NodeA
+		/*La implementació s’ha de fer, obligatòriament, invocant a un
+			mètode de la classe NodeA. És irrellevant l’ordre de
+			visualització*/
 	}
 }
