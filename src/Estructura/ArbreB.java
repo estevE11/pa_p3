@@ -15,9 +15,16 @@ public class ArbreB {
 	
 		NodeA(String contents) {
 			//Constructor 1. Inicialitza als atributys yes i no a null
+			this.contents = contents;
+			this.yes = null;
+			this.no = null;
 		}
 		NodeA(String pregunta, ArbreB a1, ArbreB a2) {
 			//Constructor 2. Crea el node i l'inicialitza amb els paràmetres
+			this.contents = pregunta;
+			this.yes = a1;
+			this.no = a2;
+
 		}
 	}
 	// Atributs: Taula de 2 posicions
