@@ -1,6 +1,9 @@
 package Joc;
 
 import Estructura.ArbreB;
+import Keyboard.Keyboard;
+
+import java.util.Objects;
 
 public class Joc {
 
@@ -11,8 +14,11 @@ public class Joc {
 
 		while(!root.atAnswer()) {
 			System.out.println(root.getContents());
-			System.out.println("> Simulamos q el usuario dice que no");
-			root.moveToNo();
+			String resposta = Keyboard.readString();
+			if(Objects.equals(resposta, "si"))
+				root.moveToYes();
+			else
+				root.moveToNo();
 		}
 
 		System.out.format("Resposta: %s", root.getContents());
