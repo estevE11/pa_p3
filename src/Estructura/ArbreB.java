@@ -46,7 +46,7 @@ public class ArbreB {
 	public ArbreB(String filename) throws Exception{
 		//Constructor 3. Crea l'arbre amb el contingut donat en un fitxer
 		//El paràmetre indica el nom del fitxer
-
+		this.loadFromFile(filename);
 	}
 
 	/* PUBLIC METHODS */
@@ -100,8 +100,17 @@ public class ArbreB {
 			System.exit(0);
 		}
 	}
-	private NodeA loadFromFile(String filename){
+	private NodeA loadFromFile(String filename) {
 		//Imprescindible implementació recursiva
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			String line = "";
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch(IOException e) {
+			System.err.println("No s'ha trobat l'arxiu indicat");
+		}
 		return null;
 	}
 	public void visualitzarAnimals() {
