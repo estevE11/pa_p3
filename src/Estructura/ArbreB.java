@@ -33,7 +33,7 @@ public class ArbreB {
 	/* CONSTRUCTORS */
 	public ArbreB(ArbreB a1, ArbreB a2, String pregunta) {
 		//Constructor 1. Crea un arbre amb una pregunta i dos respostes
-		super();
+		this.root = new NodeA[2];
 
 		NodeA first = new NodeA(pregunta, a1, a2);
 		this.root[0] = first;
@@ -70,17 +70,19 @@ public class ArbreB {
 	}
 	/* get the contents of the current node */
 	public String getContents() {
-		return ""; //COMPLETE
+		return this.root[1].contents; //COMPLETE
 	}
 	 /* Substituir la informació del node actual
 	 * per la pregunta donada pel jugador. Previament crear el node que serà el
 	 * seu fill dret, resposta no encertada, amb la informació del node actual.
 	 */
+	// TODO: Esta funcion no funciona, falta coigo
 	public void improve(String question, String answer) {
 		ArbreB arbre_yes = new ArbreB(null, null, answer);
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
 
+		// Falta encontrar el padre de "this.root[1]", para asignarle el nuevo arbol
 	}
 	private void preorderWrite(BufferedWriter buw) throws Exception {
 		//Imprescindible que la implementació sigui recursiva
