@@ -100,6 +100,7 @@ public class ArbreB {
 	}
 	private NodeA loadFromFile(String filename){
 		//Imprescindible implementació recursiva
+		return null;
 	}
 	public void visualitzarAnimals() {
 		/* La implementació s’ha de fer, obligatòriament, invocant a un
