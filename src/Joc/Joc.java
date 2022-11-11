@@ -23,11 +23,19 @@ public class Joc {
 				root.moveToNo();
 		}
 
-		root.improve("eres un perro?", "Pues q tonto");
-
-		System.out.println("test");
-		System.out.format("Resposta: %s", root.getContents());
-
+		System.out.format("Em sembla que ja ho se! Podrias ser un/a %s\n", root.getContents().toUpperCase());
+		System.out.println("Es correcte? ");
+		String resposta = Keyboard.readString();
+		if(Objects.equals(resposta, "si"))
+			System.out.println("He guanyat!");
+		else {
+			System.out.println("Ups he fallat!");
+			System.out.println("Quin animal estabes pensant?");
+			String answer = Keyboard.readString();
+			System.out.println("Quina pregunta correspon a aquest animal? ");
+			String question = Keyboard.readString();
+			root.improve(question, answer);
+		}
 	}
 
 }

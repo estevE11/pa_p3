@@ -76,7 +76,6 @@ public class ArbreB {
 	 * per la pregunta donada pel jugador. Previament crear el node que ser� el
 	 * seu fill dret, resposta no encertada, amb la informaci� del node actual.
 	 */
-	// TODO: Esta funcion no funciona, falta coigo
 	public void improve(String question, String answer) {
 		ArbreB arbre_yes = new ArbreB(null, null, answer);
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
@@ -89,7 +88,7 @@ public class ArbreB {
 			parent.root[0].no = nArbre;
 	}
 
-	// Metode que busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
+	// Busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
 	private ArbreB findTreeByChildContent(String content) {
 		ArbreB a_yes = this.root[0].yes;
 		ArbreB a_no = this.root[0].no;
