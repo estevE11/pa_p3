@@ -82,16 +82,14 @@ public class ArbreB {
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
 
-		// Falta encontrar el padre de "this.root[1]", para asignarle el nuevo arbol
-		ArbreB test = this.findTreeByChildContent(this.root[1].contents);
-		test.getContents();
-		if(test.root[0].yes == null)
-			test.root[0].yes = nArbre;
-		else if(test.root[0].no == null)
-			test.root[0].no = nArbre;
+		ArbreB parent = this.findTreeByChildContent(this.root[1].contents);
+		if(parent.root[0].yes == null)
+			parent.root[0].yes = nArbre;
+		else if(parent.root[0].no == null)
+			parent.root[0].no = nArbre;
 	}
 
-	// Metode que busca el node que tingui un fill en concret
+	// Metode que busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
 	private ArbreB findTreeByChildContent(String content) {
 		ArbreB a_yes = this.root[0].yes;
 		ArbreB a_no = this.root[0].no;
@@ -99,7 +97,7 @@ public class ArbreB {
 		if(a_yes.getContents().equals(content)) {
 			this.root[0].yes = null;
 			return this;
-		} else if(a_yes.getContents().equals(content)) {
+		} else if(a_no.getContents().equals(content)) {
 			this.root[0].no = null;
 			return this;
 		}
