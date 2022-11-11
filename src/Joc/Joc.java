@@ -23,6 +23,9 @@ public class Joc {
 				root.moveToNo();
 		}
 
+		root.improve("eres un perro?", "Pues q tonto");
+
+		System.out.println("test");
 		System.out.format("Resposta: %s", root.getContents());
 
 	}
