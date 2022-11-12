@@ -181,5 +181,11 @@ public class ArbreB {
 		/*La implementaci� s�ha de fer, obligat�riament, invocant a un
 			m�tode de la classe NodeA. �s irrellevant l�ordre de
 			visualitzaci�*/
+		NodeA temp = this.root[0];
+		if (!(temp.yes==null && temp.no==null)) {
+			System.out.println(temp.contents);
+			temp.yes.visualitzarPreguntes();
+			temp.no.visualitzarPreguntes();
+		}
 	}
 }

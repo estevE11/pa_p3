@@ -16,8 +16,15 @@ public class Joc {
 		ArbreB aN = new ArbreB(null, null, "medusa");
 		ArbreB root = new ArbreB(aY, aN, "mamifer?");
 
+		System.out.println("LListat de preguntes:");
+		root.visualitzarPreguntes();
+		System.out.println("");
+		System.out.println("LListat de animals:");
 		root.visualitzarAnimals();
+		System.out.println("");
+		System.out.println("Numero de animals:");
 		System.out.println(root.quantsAnimals());
+		System.out.println("");
 
 		boolean playing = true;
 
