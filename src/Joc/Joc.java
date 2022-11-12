@@ -8,11 +8,12 @@ import java.util.Objects;
 public class Joc {
 
 	public static void main(String[] args) throws Exception {
-		ArbreB fileTest_root = new ArbreB("PROVA.TXT");
+		//ArbreB fileTest_root = new ArbreB("PROVA.TXT");
 
-		ArbreB aY = new ArbreB(null, null, "Ets gilipollas");
-		ArbreB aN = new ArbreB(null, null, "Ets llest");
-		ArbreB root = new ArbreB(aY, aN, "T'agrada la assignatura de soft?");
+		ArbreB aY = new ArbreB(null, null, "gat");
+		ArbreB aN = new ArbreB(null, null, "medusa");
+		ArbreB root = new ArbreB(aY, aN, "mamifer?");
+
 
 		while(!root.atAnswer()) {
 			System.out.println(root.getContents());
@@ -36,6 +37,8 @@ public class Joc {
 			String question = Keyboard.readString();
 			root.improve(question, answer);
 		}
+		root.visualitzarAnimals();
 	}
+
 
 }

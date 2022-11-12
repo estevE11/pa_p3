@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
 
 
 public class ArbreB {
@@ -150,6 +149,14 @@ public class ArbreB {
 			visualitzaci�*/
 
 		/* COMPLETE */
+		NodeA temp = this.root[0];
+		String cadena = "";
+		if (temp.yes==null && temp.no==null) cadena += temp.contents;
+		else {
+			temp.yes.visualitzarAnimals();
+			temp.no.visualitzarAnimals();
+		}
+		System.out.println(cadena);
 	}
 	public int quantsAnimals() {
 		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
