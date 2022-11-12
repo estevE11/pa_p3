@@ -54,6 +54,7 @@ public class ArbreB {
 	}
 	public void rewind() {
 		//COMPLETE
+		this.root[1] = this.root[0];
 	}
 	/* True if the current node is an answer (a leaf) */
 	public boolean atAnswer() {
@@ -150,19 +151,25 @@ public class ArbreB {
 
 		/* COMPLETE */
 		NodeA temp = this.root[0];
-		String cadena = "";
-		if (temp.yes==null && temp.no==null) cadena += temp.contents;
+		if (temp.yes==null && temp.no==null)
+			System.out.println(temp.contents);
 		else {
 			temp.yes.visualitzarAnimals();
 			temp.no.visualitzarAnimals();
 		}
-		System.out.println(cadena);
 	}
 	public int quantsAnimals() {
 		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
 			m�tode de la classe NodeA */
 		/* COMPLETE */
-		return -1;
+		NodeA temp = this.root[0];
+		int count = 0;
+		if (temp.yes==null && temp.no==null) count++;
+		else {
+			count += temp.yes.quantsAnimals();
+			count += temp.no.quantsAnimals();
+		}
+		return count;
 	}
 	public int alsada() {
 		/* COMPLETE */
