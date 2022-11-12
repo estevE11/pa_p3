@@ -82,10 +82,14 @@ public class ArbreB {
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
 
 		ArbreB parent = this.findTreeByChildContent(this.root[1].contents);
-		if(parent.root[0].yes == null)
+		System.out.println(parent.getContents());
+		System.out.println(parent.root[0].yes == null);
+		System.out.println(parent.root[0].no == null);
+		if(parent.root[0].yes == null) {
 			parent.root[0].yes = nArbre;
-		else if(parent.root[0].no == null)
+		} else if(parent.root[0].no == null) {
 			parent.root[0].no = nArbre;
+		}
 	}
 
 	// Busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
@@ -94,21 +98,23 @@ public class ArbreB {
 		ArbreB a_no = this.root[0].no;
 		if(a_yes == null || a_no == null) return null;
 		if(a_yes.getContents().equals(content)) {
-			this.root[0].yes = null;
+			//this.root[0].yes = null;
 			return this;
 		} else if(a_no.getContents().equals(content)) {
-			this.root[0].no = null;
+			//this.root[0].no = null;
 			return this;
 		}
 
 		ArbreB ans_yes = a_yes.findTreeByChildContent(content);
 		ArbreB ans_no = a_no.findTreeByChildContent(content);
 		if(ans_yes != null) {
-			ans_yes.root[0].yes = null;
+			System.out.println("caca1");
+			ans_yes.root[0].no = null;
 			return ans_yes;
 		}
 		if(ans_no != null) {
-			ans_no.root[0].no = null;
+			System.out.println("caca2");
+			ans_no.root[0].yes = null;
 			return ans_no;
 		}
 
