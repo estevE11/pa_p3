@@ -8,13 +8,15 @@ import java.util.Objects;
 public class Joc {
 
 	public static void main(String[] args) throws Exception {
-		//ArbreB fileTest_root = new ArbreB("PROVA.TXT");
+		ArbreB root = new ArbreB("PROVA.TXT");
 
-		ArbreB aYN = new ArbreB(null, null, "gat");
-		ArbreB aYY = new ArbreB(null, null, "gos");
-		ArbreB aY = new ArbreB(aYY, aYN, "lladra?");
-		ArbreB aN = new ArbreB(null, null, "medusa");
-		ArbreB root = new ArbreB(aY, aN, "mamifer?");
+		/*
+		ArbreB aYN = new ArbreB(null, null, "GAT");
+		ArbreB aYY = new ArbreB(null, null, "GOS");
+		ArbreB aY = new ArbreB(aYY, aYN, "Lladra?");
+		ArbreB aN = new ArbreB(null, null, "MEDUSA");
+		ArbreB root = new ArbreB(aY, aN, "Es un mamifer?");
+		*/
 
 		System.out.println("LListat de preguntes:");
 		root.visualitzarPreguntes();

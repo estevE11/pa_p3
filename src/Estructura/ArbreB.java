@@ -45,6 +45,7 @@ public class ArbreB {
 	public ArbreB(String filename) throws Exception{
 		//Constructor 3. Crea l'arbre amb el contingut donat en un fitxer
 		//El par�metre indica el nom del fitxer
+		this.root = new NodeA[2];
 		this.loadFromFile(filename);
 	}
 
@@ -141,15 +142,31 @@ public class ArbreB {
 		//Imprescindible implementaci� recursiva
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
-			String line = "";
-			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-			}
+			ArbreB r = loadNext(reader);
+			this.root[0] = r.root[0];
+			this.root[1] = r.root[0];
 		} catch(IOException e) {
 			System.err.println("No s'ha trobat l'arxiu indicat");
 		}
 		return null;
 	}
+
+	private ArbreB loadNext(BufferedReader reader) throws IOException {
+		String line = reader.readLine();
+		if(line == null) return null;
+		boolean isQuestion = line.endsWith("?");
+		ArbreB response = new ArbreB(null, null, line);
+
+		if(!isQuestion) return response;
+
+		System.out.println("question: " + line);
+		response.root[0].yes = this.loadNext(reader);
+		response.root[0].no = this.loadNext(reader);
+
+		return response;
+
+	}
+
 	public void visualitzarAnimals() {
 		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
 			m�tode de la classe NodeA. �s irrellevant l�ordre de
