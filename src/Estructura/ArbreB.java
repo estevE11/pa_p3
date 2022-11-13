@@ -78,6 +78,8 @@ public class ArbreB {
 	 * seu fill dret, resposta no encertada, amb la informaci� del node actual.
 	 */
 	public void improve(String question, String answer) {
+		if(!question.endsWith("?")) question += "?";
+		if(answer.endsWith("?")) answer = answer.substring(0, answer.length()-1);
 		ArbreB arbre_yes = new ArbreB(null, null, answer);
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
