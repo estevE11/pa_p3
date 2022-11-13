@@ -25,6 +25,9 @@ public class Joc {
 		root.visualitzarAnimals();
 		System.out.println("");
 		System.out.println("Numero de animals:");
+		System.out.println(root.quantsAnimals());
+		System.out.println("");
+		System.out.println("Alsada:");
 		System.out.println(root.alsada());
 		System.out.println("");
 

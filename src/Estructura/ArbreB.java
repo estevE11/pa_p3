@@ -109,12 +109,10 @@ public class ArbreB {
 		ArbreB ans_yes = a_yes.findTreeByChildContent(content);
 		ArbreB ans_no = a_no.findTreeByChildContent(content);
 		if(ans_yes != null) {
-			System.out.println("caca1");
 			ans_yes.root[0].no = null;
 			return ans_yes;
 		}
 		if(ans_no != null) {
-			System.out.println("caca2");
 			ans_no.root[0].yes = null;
 			return ans_no;
 		}
@@ -124,6 +122,7 @@ public class ArbreB {
 
 	private void preorderWrite(BufferedWriter buw) throws Exception {
 		//Imprescindible que la implementaci� sigui recursiva
+
 	}
 	/* Saves contents of tree in a text file */
 	public void save(String filename) throws Exception {
