@@ -159,7 +159,6 @@ public class ArbreB {
 
 		if(!isQuestion) return response;
 
-		System.out.println("question: " + line);
 		response.root[0].yes = this.loadNext(reader);
 		response.root[0].no = this.loadNext(reader);
 
