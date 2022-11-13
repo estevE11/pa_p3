@@ -80,6 +80,8 @@ public class ArbreB {
 	public void improve(String question, String answer) {
 		if(!question.endsWith("?")) question += "?";
 		if(answer.endsWith("?")) answer = answer.substring(0, answer.length()-1);
+		question = question.toUpperCase();
+		answer = answer.toUpperCase();
 		ArbreB arbre_yes = new ArbreB(null, null, answer);
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
@@ -113,9 +115,7 @@ public class ArbreB {
 		if(ans_yes != null) return ans_yes;
 
 		ArbreB ans_no = a_no.findTreeByChildContent(content);
-		if(ans_no != null) return ans_no;
-
-		return null;
+		return ans_no;
 	}
 
 	private void preorderWrite(BufferedWriter buw) throws Exception {
@@ -159,6 +159,7 @@ public class ArbreB {
 	private ArbreB loadNext(BufferedReader reader) throws IOException {
 		String line = reader.readLine();
 		if(line == null) return null;
+		line = line.toUpperCase();
 		boolean isQuestion = line.endsWith("?");
 		ArbreB response = new ArbreB(null, null, line);
 
