@@ -57,12 +57,16 @@ public class Joc {
 				root.improve(question, answer);
 			}
 
+			root.save("PROVA.TXT");
+
 			System.out.println("Vols tornar a jugar? ");
 			String play = Keyboard.readString();
 			if(play.equals("no")) playing = false;
 			else root.rewind();
 
 		}
+
+		//root.save("PROVA.TXT");
 	}
 
 

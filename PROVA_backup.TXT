@@ -8,6 +8,4 @@ GAT
 BALENA
 DOFÍ
 TIGRE
-cuca?
-cuca
 MEDUSA

@@ -84,10 +84,12 @@ public class ArbreB {
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
 
+		System.out.println("1" + this.getContents());
 		ArbreB parent = this.findTreeByChildContent(this.root[1].contents);
-		System.out.println(parent.getContents());
-		System.out.println(parent.root[0].yes == null);
-		System.out.println(parent.root[0].no == null);
+		System.out.println("parent content: " + parent.root[0].contents);
+
+		if(parent.root[0].yes == null && parent.root[0].no == null || parent.root[0].yes != null && parent.root[0].no != null)
+			System.err.println("ERROR!");
 		if(parent.root[0].yes == null) {
 			parent.root[0].yes = nArbre;
 		} else if(parent.root[0].no == null) {
@@ -97,14 +99,17 @@ public class ArbreB {
 
 	// Busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
 	private ArbreB findTreeByChildContent(String content) {
+		System.out.println("2" + this.root[0].contents);
 		ArbreB a_yes = this.root[0].yes;
 		ArbreB a_no = this.root[0].no;
 		if(a_yes == null || a_no == null) return null;
-		if(a_yes.getContents().equals(content)) {
-			//this.root[0].yes = null;
+		if(a_yes.root[0].contents.equals(content)) {
+			this.root[0].yes = null;
 			return this;
-		} else if(a_no.getContents().equals(content)) {
-			//this.root[0].no = null;
+		}
+		System.out.println(a_no.getContents() + " -> " + a_no.getContents().equals(content));
+		if(a_no.root[0].contents.equals(content)) {
+			this.root[0].no = null;
 			return this;
 		}
 
@@ -124,13 +129,21 @@ public class ArbreB {
 
 	private void preorderWrite(BufferedWriter buw) throws Exception {
 		//Imprescindible que la implementaci� sigui recursiva
+		NodeA current = this.root[1];
+		buw.write(current.contents + "\n");
 
+		if(current.yes == null && current.no == null) return;
+		this.root[1] = current.yes.root[0];
+		this.preorderWrite(buw);
+		this.root[1] = current.no.root[0];
+		this.preorderWrite(buw);
 	}
 	/* Saves contents of tree in a text file */
 	public void save(String filename) throws Exception {
 		BufferedWriter buw = null;
 		try {
 			buw = new BufferedWriter(new FileWriter(filename));
+			this.rewind();
 			this.preorderWrite(buw);
 			buw.close();
 
@@ -164,7 +177,6 @@ public class ArbreB {
 		response.root[0].no = this.loadNext(reader);
 
 		return response;
-
 	}
 
 	public void visualitzarAnimals() {
