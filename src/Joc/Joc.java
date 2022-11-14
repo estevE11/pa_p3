@@ -49,7 +49,7 @@ public class Joc {
 
 		while(playing) {
 			while (!root.atAnswer()) {
-				System.out.println(root.getContents());
+				System.out.print(root.getContents() + " ");
 				String resposta = Keyboard.readString();
 				if (Objects.equals(resposta, "si"))
 					root.moveToYes();
@@ -58,15 +58,15 @@ public class Joc {
 			}
 
 			System.out.format("Em sembla que ja ho se! Podrias ser un/a %s\n", root.getContents().toUpperCase());
-			System.out.println("Es correcte? ");
+			System.out.print("Es correcte? ");
 			String resposta = Keyboard.readString();
 			if (Objects.equals(resposta, "si"))
 				System.out.println("He guanyat!");
 			else {
 				System.out.println("Ups he fallat!");
-				System.out.println("Quin animal estabes pensant?");
+				System.out.print("Quin animal estabes pensant? ");
 				String answer = Keyboard.readString();
-				System.out.println("Quina pregunta correspon a aquest animal? ");
+				System.out.print("Quina pregunta correspon a aquest animal? ");
 				String question = Keyboard.readString();
 				root.improve(question, answer);
 			}
