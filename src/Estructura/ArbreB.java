@@ -82,6 +82,11 @@ public class ArbreB {
 		if(answer.endsWith("?")) answer = answer.substring(0, answer.length()-1);
 		question = question.toUpperCase();
 		answer = answer.toUpperCase();
+
+		root[1].yes = new ArbreB(null, null, answer);
+		root[1].no = new ArbreB(null, null, root[1].contents);
+		root[1].contents = question;
+/*
 		ArbreB arbre_yes = new ArbreB(null, null, answer);
 		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
 		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
@@ -94,7 +99,7 @@ public class ArbreB {
 			parent.root[0].yes = nArbre;
 		} else if(parent.root[0].no == null) {
 			parent.root[0].no = nArbre;
-		}
+		}*/
 	}
 
 	// Busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
