@@ -32,6 +32,16 @@ public class ArbreB {
 			}
 			return 1;
 		}
+
+		public int getAnimalCount() {
+			int count = 0;
+			if (this.yes==null && this.no==null) count++;
+			else {
+				count += this.yes.root[0].getAnimalCount();
+				count += this.no.root[0].getAnimalCount();
+			}
+			return count;
+		}
 	}
 	// Atributs: Taula de 2 posicions
 	private NodeA[] root;
@@ -166,14 +176,7 @@ public class ArbreB {
 		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
 			m�tode de la classe NodeA */
 		/* COMPLETE */
-		NodeA temp = this.root[0];
-		int count = 0;
-		if (temp.yes==null && temp.no==null) count++;
-		else {
-			count += temp.yes.quantsAnimals();
-			count += temp.no.quantsAnimals();
-		}
-		return count;
+		return this.root[0].getAnimalCount();
 	}
 	public int alsada() {
 		/* COMPLETE */
