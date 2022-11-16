@@ -42,12 +42,13 @@ public class Joc {
 			root = new ArbreB(new ArbreB(null, null, y), new ArbreB(null, null, n), q);
 		}
 
-		System.out.println("\nJuguem!!\n");
+		System.out.println("\nJuguem!!");
 
 
 		boolean playing = true;
 
 		while(playing) {
+			System.out.println(""); // Salt de linia estetic
 			while (!root.atAnswer()) {
 				System.out.print(root.getContents() + " ");
 				String resposta = Keyboard.readString();
@@ -71,20 +72,18 @@ public class Joc {
 				root.improve(question, answer);
 			}
 
-			System.out.println("Vols tornar a jugar? ");
+			System.out.println("\nVols tornar a jugar? ");
 			String play = Keyboard.readString();
 			if(play.equals("no")) playing = false;
 			else root.rewind();
 
 		}
 
-		if(!cf) {
-			System.out.print("Vols guardar el fixer? ");
-			if(Keyboard.readString().equals("si")) {
-				System.out.print("Nom del fixer: ");
-				String filename = Keyboard.readString();
-				root.save(filename);
-			}
+		System.out.print("\nVols guardar el fixer? ");
+		if(Keyboard.readString().equals("si")) {
+			System.out.print("Nom del fixer: ");
+			String filename = Keyboard.readString();
+			root.save(filename);
 		}
 
 		System.out.println("\nAdeu!");
