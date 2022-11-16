@@ -42,6 +42,23 @@ public class ArbreB {
 			}
 			return count;
 		}
+
+		public void printQuestions() {
+			if (this.yes != null && this.no != null) {
+				System.out.println(this.contents);
+				this.yes.root[0].printQuestions();
+				this.no.root[0].printQuestions();
+			}
+		}
+
+		public void printAnimals() {
+			if(this.yes == null && this.no == null) {
+				System.out.println(this.contents);
+			} else {
+				this.yes.root[0].printAnimals();
+				this.no.root[0].printAnimals();
+			}
+		}
 	}
 	// Atributs: Taula de 2 posicions
 	private NodeA[] root;
@@ -164,13 +181,7 @@ public class ArbreB {
 			visualitzaci�*/
 
 		/* COMPLETE */
-		NodeA temp = this.root[0];
-		if (temp.yes==null && temp.no==null)
-			System.out.println(temp.contents);
-		else {
-			temp.yes.visualitzarAnimals();
-			temp.no.visualitzarAnimals();
-		}
+		this.root[0].printAnimals();
 	}
 	public int quantsAnimals() {
 		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
@@ -189,11 +200,6 @@ public class ArbreB {
 		/*La implementaci� s�ha de fer, obligat�riament, invocant a un
 			m�tode de la classe NodeA. �s irrellevant l�ordre de
 			visualitzaci�*/
-		NodeA temp = this.root[0];
-		if (!(temp.yes==null && temp.no==null)) {
-			System.out.println(temp.contents);
-			temp.yes.visualitzarPreguntes();
-			temp.no.visualitzarPreguntes();
-		}
+		this.root[0].printQuestions();
 	}
 }
