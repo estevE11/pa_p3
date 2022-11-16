@@ -25,6 +25,13 @@ public class ArbreB {
 			this.no = a2;
 
 		}
+
+		public int depth() {
+			if (this.yes != null && this.no != null) {
+				return 1 + Math.max(this.yes.root[0].depth(),this.no.root[0].depth());
+			}
+			return 1;
+		}
 	}
 	// Atributs: Taula de 2 posicions
 	private NodeA[] root;
@@ -171,12 +178,8 @@ public class ArbreB {
 	public int alsada() {
 		/* COMPLETE */
 		// Imprescindible invocar a un m�tode la classe NodeA
-		NodeA temp = this.root[0];
-
-		if (!(temp.yes==null && temp.no==null)) {
-			return 1 + Math.max(temp.yes.alsada(),temp.no.alsada());
-		}
-		return 0;
+		if(this.isEmpty()) return 0;
+		return this.root[0].depth()-1;
 	}
 	public void visualitzarPreguntes() {
 		/* COMPLETE */
