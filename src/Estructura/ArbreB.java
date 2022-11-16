@@ -13,13 +13,11 @@ public class ArbreB {
 		ArbreB yes, no;	
 	
 		NodeA(String contents) {
-			//Constructor 1. Inicialitza als atributys yes i no a null
 			this.contents =contents.toUpperCase();
 			this.yes = null;
 			this.no = null;
 		}
 		NodeA(String pregunta, ArbreB a1, ArbreB a2) {
-			//Constructor 2. Crea el node i l'inicialitza amb els par�metres
 			this.contents = pregunta.toUpperCase();
 			this.yes = a1;
 			this.no = a2;
@@ -60,12 +58,9 @@ public class ArbreB {
 			}
 		}
 	}
-	// Atributs: Taula de 2 posicions
 	private NodeA[] root;
 
-	/* CONSTRUCTORS */
 	public ArbreB(ArbreB a1, ArbreB a2, String pregunta) {
-		//Constructor 1. Crea un arbre amb una pregunta i dos respostes
 		this.root = new NodeA[2];
 
 		NodeA first = new NodeA(pregunta, a1, a2);
@@ -73,44 +68,36 @@ public class ArbreB {
 		this.root[1] = first;
 	}
 	public ArbreB() {
-		//Constructor 2. Crea un arbre buit
 		this.root = new NodeA[2];
 	}
 	public ArbreB(String filename) throws Exception{
-		//Constructor 3. Crea l'arbre amb el contingut donat en un fitxer
-		//El par�metre indica el nom del fitxer
 		this.root = new NodeA[2];
 		this.loadFromFile(filename);
 	}
 
-	/* PUBLIC METHODS */
 	public boolean isEmpty() {
 		return this.root[0] == null && this.root[1] == null;
 	}
 	public void rewind() {
-		//COMPLETE
 		this.root[1] = this.root[0];
 	}
-	/* True if the current node is an answer (a leaf) */
+
 	public boolean atAnswer() {
 		return this.root[1].no == null && this.root[1].yes == null; //COMPLETE
 	}
-	/* move current to yes-descendant of itself */
+
 	public void moveToYes() {
 		this.root[1] = this.root[1].yes.root[0];
 	}
-	/* move current to yes-descendant of itself */
+
 	public void moveToNo() {
 		this.root[1] = this.root[1].no.root[0];
 	}
-	/* get the contents of the current node */
+
 	public String getContents() {
 		return this.root[1].contents; //COMPLETE
 	}
-	 /* Substituir la informaci� del node actual
-	 * per la pregunta donada pel jugador. Previament crear el node que ser� el
-	 * seu fill dret, resposta no encertada, amb la informaci� del node actual.
-	 */
+
 	public void improve(String question, String answer) {
 		if(!question.endsWith("?")) question += "?";
 		if(answer.endsWith("?")) answer = answer.substring(0, answer.length()-1);
@@ -123,7 +110,6 @@ public class ArbreB {
 	}
 
 	private void preorderWrite(BufferedWriter buw) throws Exception {
-		//Imprescindible que la implementaci� sigui recursiva
 		NodeA current = this.root[1];
 		buw.write(current.contents + "\n");
 
@@ -133,7 +119,7 @@ public class ArbreB {
 		this.root[1] = current.no.root[0];
 		this.preorderWrite(buw);
 	}
-	/* Saves contents of tree in a text file */
+
 	public void save(String filename) throws Exception {
 		BufferedWriter buw = null;
 		try {
@@ -148,7 +134,6 @@ public class ArbreB {
 		}
 	}
 	private NodeA loadFromFile(String filename) {
-		//Imprescindible implementaci� recursiva
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
 			ArbreB r = loadNext(reader);
@@ -176,30 +161,16 @@ public class ArbreB {
 	}
 
 	public void visualitzarAnimals() {
-		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
-			m�tode de la classe NodeA. �s irrellevant l�ordre de
-			visualitzaci�*/
-
-		/* COMPLETE */
 		this.root[0].printAnimals();
 	}
 	public int quantsAnimals() {
-		/* La implementaci� s�ha de fer, obligat�riament, invocant a un
-			m�tode de la classe NodeA */
-		/* COMPLETE */
 		return this.root[0].getAnimalCount();
 	}
 	public int alsada() {
-		/* COMPLETE */
-		// Imprescindible invocar a un m�tode la classe NodeA
 		if(this.isEmpty()) return 0;
 		return this.root[0].depth()-1;
 	}
 	public void visualitzarPreguntes() {
-		/* COMPLETE */
-		/*La implementaci� s�ha de fer, obligat�riament, invocant a un
-			m�tode de la classe NodeA. �s irrellevant l�ordre de
-			visualitzaci�*/
 		this.root[0].printQuestions();
 	}
 }
