@@ -58,6 +58,7 @@ public class ArbreB {
 			}
 		}
 	}
+	
 	private NodeA[] root;
 
 	public ArbreB(ArbreB a1, ArbreB a2, String pregunta) {
@@ -67,9 +68,11 @@ public class ArbreB {
 		this.root[0] = first;
 		this.root[1] = first;
 	}
+	
 	public ArbreB() {
 		this.root = new NodeA[2];
 	}
+	
 	public ArbreB(String filename) throws Exception{
 		this.root = new NodeA[2];
 		this.loadFromFile(filename);
@@ -78,6 +81,7 @@ public class ArbreB {
 	public boolean isEmpty() {
 		return this.root[0] == null && this.root[1] == null;
 	}
+	
 	public void rewind() {
 		this.root[1] = this.root[0];
 	}
@@ -133,6 +137,7 @@ public class ArbreB {
 			System.exit(0);
 		}
 	}
+	
 	private NodeA loadFromFile(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -163,13 +168,16 @@ public class ArbreB {
 	public void visualitzarAnimals() {
 		this.root[0].printAnimals();
 	}
+	
 	public int quantsAnimals() {
 		return this.root[0].getAnimalCount();
 	}
+	
 	public int alsada() {
 		if(this.isEmpty()) return 0;
 		return this.root[0].depth()-1;
 	}
+	
 	public void visualitzarPreguntes() {
 		this.root[0].printQuestions();
 	}
