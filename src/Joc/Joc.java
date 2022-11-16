@@ -32,7 +32,7 @@ public class Joc {
 		} else {
 			System.out.println("Per començar cal introduir la primera pregunta amb dues respostes\n");
 			System.out.print("Indica la pregunta de l'arrel: ");
-			String q = Keyboard.readString();
+			String q = Keyboard.readString() + "?";
 			System.out.println();
 			System.out.print("Indica el nom de l'animal de la resposta afirmativa: ");
 			String y = Keyboard.readString();
@@ -71,8 +71,6 @@ public class Joc {
 				root.improve(question, answer);
 			}
 
-			root.save("PROVA.TXT");
-
 			System.out.println("Vols tornar a jugar? ");
 			String play = Keyboard.readString();
 			if(play.equals("no")) playing = false;
@@ -80,7 +78,15 @@ public class Joc {
 
 		}
 
-		//root.save("PROVA.TXT");
+		if(!cf) {
+			System.out.print("Vols guardar el fixer? ");
+			if(Keyboard.readString().equals("si")) {
+				String filename = Keyboard.readString();
+				root.save(filename);
+			}
+		}
+
+		System.out.println("\nAdeu!");
 	}
 
 

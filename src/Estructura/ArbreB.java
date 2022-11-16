@@ -14,13 +14,13 @@ public class ArbreB {
 	
 		NodeA(String contents) {
 			//Constructor 1. Inicialitza als atributys yes i no a null
-			this.contents = contents;
+			this.contents =contents.toUpperCase();
 			this.yes = null;
 			this.no = null;
 		}
 		NodeA(String pregunta, ArbreB a1, ArbreB a2) {
 			//Constructor 2. Crea el node i l'inicialitza amb els par�metres
-			this.contents = pregunta;
+			this.contents = pregunta.toUpperCase();
 			this.yes = a1;
 			this.no = a2;
 
@@ -86,41 +86,6 @@ public class ArbreB {
 		root[1].yes = new ArbreB(null, null, answer);
 		root[1].no = new ArbreB(null, null, root[1].contents);
 		root[1].contents = question;
-/*
-		ArbreB arbre_yes = new ArbreB(null, null, answer);
-		ArbreB arbre_no = new ArbreB(null, null, this.root[1].contents);
-		ArbreB nArbre = new ArbreB(arbre_yes, arbre_no, question);
-
-		ArbreB parent = this.findTreeByChildContent(this.root[1].contents);
-
-		if(parent.root[0].yes == null && parent.root[0].no == null || parent.root[0].yes != null && parent.root[0].no != null)
-			System.err.println("ERROR!");
-		if(parent.root[0].yes == null) {
-			parent.root[0].yes = nArbre;
-		} else if(parent.root[0].no == null) {
-			parent.root[0].no = nArbre;
-		}*/
-	}
-
-	// Busca el ArbreB que tingui un fill amb el contingut que se li passa com a argument
-	private ArbreB findTreeByChildContent(String content) {
-		ArbreB a_yes = this.root[0].yes;
-		ArbreB a_no = this.root[0].no;
-		if(a_yes == null || a_no == null) return null;
-		if(a_yes.root[0].contents.equals(content)) {
-			this.root[0].yes = null;
-			return this;
-		}
-		if(a_no.root[0].contents.equals(content)) {
-			this.root[0].no = null;
-			return this;
-		}
-
-		ArbreB ans_yes = a_yes.findTreeByChildContent(content);
-		if(ans_yes != null) return ans_yes;
-
-		ArbreB ans_no = a_no.findTreeByChildContent(content);
-		return ans_no;
 	}
 
 	private void preorderWrite(BufferedWriter buw) throws Exception {
