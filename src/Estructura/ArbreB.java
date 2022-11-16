@@ -172,10 +172,19 @@ public class ArbreB {
 		/* COMPLETE */
 		// Imprescindible invocar a un m�tode la classe NodeA
 		NodeA temp = this.root[0];
+
+		/*  Version Ziad
 		if (!(temp.yes==null && temp.no==null)) {
 			return 1 + Math.max(temp.yes.alsada(),temp.no.alsada());
 		}
 		return 1;
+		*/
+
+		// Version Rems
+		int left=0, right=0;
+		if (temp.yes != null) left = temp.yes.alsada();
+		if (temp.no != null) right = temp.no.alsada();
+		return 1 + Math.max(left,right);
 	}
 	public void visualitzarPreguntes() {
 		/* COMPLETE */
