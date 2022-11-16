@@ -81,6 +81,7 @@ public class Joc {
 		if(!cf) {
 			System.out.print("Vols guardar el fixer? ");
 			if(Keyboard.readString().equals("si")) {
+				System.out.print("Nom del fixer: ");
 				String filename = Keyboard.readString();
 				root.save(filename);
 			}
