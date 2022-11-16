@@ -10,37 +10,10 @@ import java.util.Objects;
 public class Joc {
 
 	public static void main(String[] args) throws Exception {
-		ArbreB root;
 
 		System.out.print("Vols carregar un fixer? ");
 		boolean cf = Keyboard.readString().equals("si");
-		if(cf) {
-			System.out.print("Nom del fixer: ");
-			String filename = Keyboard.readString();
-			root = new ArbreB(filename);
-
-			System.out.println("Has carregat un fixer!");
-			System.out.println("L'arbre conte els seguents animals:");
-			root.visualitzarAnimals();
-			System.out.println("En total te " + root.quantsAnimals() + " animals");
-			System.out.println("i una alçada de " + root.alsada());
-
-			System.out.println();
-			System.out.print("Vols visualitzar les preguntes? ");
-			boolean mostrarQ = Keyboard.readString().equals("si");
-			if(mostrarQ) root.visualitzarPreguntes();
-		} else {
-			System.out.println("Per començar cal introduir la primera pregunta amb dues respostes\n");
-			System.out.print("Indica la pregunta de l'arrel: ");
-			String q = Keyboard.readString() + "?";
-			System.out.println();
-			System.out.print("Indica el nom de l'animal de la resposta afirmativa: ");
-			String y = Keyboard.readString();
-			System.out.print("Indica el nom de l'animal de la resposta negativa: ");
-			String n = Keyboard.readString();
-
-			root = new ArbreB(new ArbreB(null, null, y), new ArbreB(null, null, n), q);
-		}
+		ArbreB root = cf ? dialogLoadFile() : dialogNewTree();
 
 		System.out.println("\nJuguem!!");
 
@@ -50,31 +23,23 @@ public class Joc {
 		while(playing) {
 			System.out.println(""); // Salt de linia estetic
 			while (!root.atAnswer()) {
-				System.out.print(root.getContents() + " ");
-				String resposta = Keyboard.readString();
-				if (Objects.equals(resposta, "si"))
+				if (askYesNo(root.getContents()))
 					root.moveToYes();
 				else
 					root.moveToNo();
 			}
 
 			System.out.format("Em sembla que ja ho se! Podrias ser un/a %s\n", root.getContents().toUpperCase());
-			System.out.print("Es correcte? ");
-			String resposta = Keyboard.readString();
-			if (Objects.equals(resposta, "si"))
+			if (askYesNo("Es correcte?"))
 				System.out.println("He guanyat!");
 			else {
 				System.out.println("Ups he fallat!");
-				System.out.print("Quin animal estabes pensant? ");
-				String answer = Keyboard.readString();
-				System.out.print("Quina pregunta correspon a aquest animal? ");
-				String question = Keyboard.readString();
+				String answer = askQuestion("Quin animal estaves pensant?");
+				String question = askQuestion("Quina pregunta correspon a aquest animal?");
 				root.improve(question, answer);
 			}
 
-			System.out.println("\nVols tornar a jugar? ");
-			String play = Keyboard.readString();
-			if(play.equals("no")) playing = false;
+			if(!askYesNo("\nVols tornar a jugar?")) playing = false;
 			else root.rewind();
 
 		}
@@ -89,5 +54,40 @@ public class Joc {
 		System.out.println("\nAdeu!");
 	}
 
+	private static ArbreB dialogLoadFile() throws Exception {
+		ArbreB response;
+		String filename = askQuestion("Quin es el nom del fixer?");
+		response = new ArbreB(filename);
 
+		System.out.println("Has carregat un fixer!");
+		System.out.println("L'arbre conte els seguents animals:");
+		response.visualitzarAnimals();
+		System.out.println("En total te " + response.quantsAnimals() + " animals");
+		System.out.println("i una alçada de " + response.alsada());
+
+		System.out.println();
+		boolean mostrarQ = askYesNo("Vols visualitzar les preguntes?");
+		if(mostrarQ) response.visualitzarPreguntes();
+		return response;
+	}
+
+	private static ArbreB dialogNewTree() {
+		System.out.println("Per començar cal introduir la primera pregunta amb dues respostes\n");
+		String q = askQuestion("Indica la pregunta de l'arrel:") + "?";
+		System.out.println();
+		String y = askQuestion("Indica el nom de l'animal de la resposta afirmativa:");
+		String n = askQuestion("Indica el nom de l'animal de la resposta negativa:");
+
+		return new ArbreB(new ArbreB(null, null, y), new ArbreB(null, null, n), q);
+	}
+
+	private static String askQuestion(String question) {
+		System.out.print(question + " ");
+		return Keyboard.readString();
+	}
+
+	private static boolean askYesNo(String question) {
+		String ans = askQuestion(question);
+		return ans.equalsIgnoreCase("si");
+	}
 }
