@@ -11,9 +11,7 @@ public class Joc {
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.print("Vols carregar un fixer? ");
-		boolean cf = Keyboard.readString().equals("si");
-		ArbreB root = cf ? dialogLoadFile() : dialogNewTree();
+		ArbreB root = askYesNo("Vols carregar un fixer?") ? dialogLoadFile() : dialogNewTree();
 
 		System.out.println("\nJuguem!!");
 
@@ -59,10 +57,10 @@ public class Joc {
 		String filename = askQuestion("Quin es el nom del fixer?");
 		response = new ArbreB(filename);
 
-		System.out.println("Has carregat un fixer!");
-		System.out.println("L'arbre conte els seguents animals:");
+		System.out.println("\nHas carregat un fixer!");
+		System.out.println("\nL'arbre conte els seguents animals:");
 		response.visualitzarAnimals();
-		System.out.println("En total te " + response.quantsAnimals() + " animals");
+		System.out.println("\nEn total te " + response.quantsAnimals() + " animals");
 		System.out.println("i una alçada de " + response.alsada());
 
 		System.out.println();
